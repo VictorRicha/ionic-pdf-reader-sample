@@ -3,15 +3,16 @@ angular
 	.controller('pdfController', pdfController);
 	
 	
-pdfController.$inject = ['$ionicLoading', '$ionicPlatform', '$cordovaFileTransfer', '$cordovaFile'];
+pdfController.$inject = ['$ionicLoading', '$ionicPlatform', '$cordovaFileTransfer', '$cordovaFile', '$cordovaInAppBrowser'];
 	
-function pdfController($ionicLoading, $ionicPlatform, $cordovaFileTransfer, $cordovaFile) {
+function pdfController($ionicLoading, $ionicPlatform, $cordovaFileTransfer, $cordovaFile, $cordovaInAppBrowser) {
 	var vm = this;
 	
 	vm.files = [];
 	vm.path = "downloads";
 	
 	vm.downloadPDF = downloadPDF;
+	vm.openPDF = openPDF;
 	
 	$ionicPlatform.ready(activate);
 	
@@ -67,5 +68,17 @@ function pdfController($ionicLoading, $ionicPlatform, $cordovaFileTransfer, $cor
 				    console.log('Downloading:  '+(progress.loaded/progress.total).toFixed()+'%');
 				  });
 		});
+	}
+	
+	function openPDF(file){
+		console.log("opening Pdf");
+		$cordovaInAppBrowser.open(
+		    file.nativeURL,
+		    '_self'
+		  ).then(function() {
+		      console.log("openPdf success");
+		  }, function(err) {
+		      console.log("openPdf error");
+		  });
 	}
 }

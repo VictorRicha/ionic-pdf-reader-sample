@@ -30,7 +30,7 @@
     </ion-header-bar>
     <ion-content padding="true">
       <ion-list>
-        <ion-item ng-repeat="file in vm.files">
+        <ion-item ng-repeat="file in vm.files" ng-click="vm.openPDF(file)">
           {{file.name}}
         </ion-item>
       </ion-list>

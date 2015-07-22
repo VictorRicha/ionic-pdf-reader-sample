@@ -74,7 +74,8 @@ function pdfController($ionicLoading, $ionicPlatform, $cordovaFileTransfer, $cor
 		console.log("opening Pdf");
 		$cordovaInAppBrowser.open(
 		    file.nativeURL,
-		    '_self'
+		    '_blank',
+			{ location: 'no', clearcache: 'yes', toolbar: 'yes' }
 		  ).then(function() {
 		      console.log("openPdf success");
 		  }, function(err) {

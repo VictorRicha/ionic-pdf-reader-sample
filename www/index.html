@@ -14,18 +14,30 @@
 
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
-
+    
+    <script src="lib/ngCordova/dist/ng-cordova.js"></script>
+    
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
 
     <!-- your app's js -->
     <script src="js/app.js"></script>
+    <script src="js/pdfController.js"></script>
   </head>
-  <body ng-app="pdfReader">
-    <ion-nav-bar class="bar-stable">
-      <ion-nav-back-button>
-      </ion-nav-back-button>
-    </ion-nav-bar>
-    <ion-nav-view></ion-nav-view>
+  <body ng-app="pdfReader" ng-controller="pdfController as vm">
+    <ion-header-bar class="bar-positive">
+      <h1 class="title">PDFs</h1>
+    </ion-header-bar>
+    <ion-content padding="true">
+      <ion-list>
+        <ion-item ng-repeat="file in vm.files">
+          {{file.name}}
+        </ion-item>
+      </ion-list>
+      
+      <button class="button button-block button-balanced" ng-click="vm.downloadPDF()">
+        Download PDFs
+      </button>
+    </ion-content>
   </body>
 </html>

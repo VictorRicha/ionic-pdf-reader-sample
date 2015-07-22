@@ -1,4 +1,4 @@
-angular.module('pdfReader', ['ionic'])
+angular.module('pdfReader', ['ionic', 'ngCordova'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
